@@ -1,0 +1,68 @@
+.message {
+  display: flex;
+  margin-bottom: 16px;
+  position: relative;
+  max-width: 100%;
+}
+
+.user {
+  justify-content: flex-end;
+}
+
+.assistant {
+  justify-content: flex-start;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+  color: white;
+  flex-shrink: 0;
+}
+
+.content {
+  padding: 12px;
+  border-radius: 12px;
+  word-break: break-word;
+  line-height: 1.4;
+}
+
+.user .content {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.assistant .content {
+  background-color: var(--color-card-bg);
+  color: var(--color-text);
+}
+
+.copyBtn {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background: none;
+  border: none;
+  opacity: 0;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.message:hover .copyBtn {
+  opacity: 1;
+}
+
+/* Общая обёртка */
+.messageList {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}

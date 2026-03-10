@@ -1,0 +1,49 @@
+.chatItem {
+  position: relative;
+  padding: 10px;
+  border-radius: 6px;
+  background-color: var(--color-card-bg);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chatItem:hover {
+  background-color: var(--color-hover);
+}
+
+.title {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--color-text);
+}
+
+.date {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  margin-left: 8px;
+}
+
+.actions {
+  display: none;
+  gap: 6px;
+}
+
+.chatItem:hover .actions {
+  display: flex;
+}
+
+.actionBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+.actionBtn:hover {
+  opacity: 1;
+}

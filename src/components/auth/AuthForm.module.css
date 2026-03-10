@@ -1,0 +1,38 @@
+.authForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 20px;
+  background-color: var(--color-bg);
+}
+
+.authForm h1 {
+  color: var(--color-text);
+  margin-bottom: 24px;
+}
+
+.input {
+  width: 300px;
+  padding: 10px;
+  margin-bottom: 16px;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  background-color: var(--color-input-bg);
+  color: var(--color-text);
+}
+
+.scopeGroup {
+  margin: 16px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.radioLabel {
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}

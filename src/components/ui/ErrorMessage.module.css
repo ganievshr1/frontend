@@ -1,0 +1,8 @@
+.error {
+  color: var(--color-error);
+  font-size: 0.875rem;
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}

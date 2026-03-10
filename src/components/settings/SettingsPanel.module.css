@@ -1,0 +1,42 @@
+.panel {
+  padding: 20px;
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  max-width: 500px;
+  margin: 20px auto;
+  color: var(--color-text);
+}
+
+.panel h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.select, .numberInput, .textarea {
+  width: 100%;
+  padding: 8px;
+  margin: 8px 0 16px;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  background-color: var(--color-input-bg);
+  color: var(--color-text);
+}
+
+.textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+.themeToggle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}

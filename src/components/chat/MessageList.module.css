@@ -1,0 +1,28 @@
+.messageList {
+  flex:1;
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--color-text-secondary);
+}
+
+.empty div {
+  font-size: 48px;
+  margin-bottom: 16px;
+  color: var(--color-primary);
+}
+
+.empty p {
+  font-size: 18px;
+  margin: 0;
+}

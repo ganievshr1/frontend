@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './InputArea.module.css';
 import Button from '../ui/Button';
 
-const InputArea: React.FC = () => {
-  const [input, setInput] = React.useState('');
+interface InputAreaProps {
+  onSend: () => void;
+  isLoading: boolean;
+}
 
-  const handleSend = () => {
+const InputArea: React.FC<InputAreaProps> = ({ onSend, isLoading }) => {
+  const [input, setInput] = useState('');
+
+  const handleSubmit = () => {
     if (input.trim()) {
-      console.log('Send:', input);
+      onSend(input);
       setInput('');
     }
   };
@@ -15,7 +20,7 @@ const InputArea: React.FC = () => {
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
-      handleSend();
+      handleSubmit();
     }
   };
 
@@ -28,16 +33,27 @@ const InputArea: React.FC = () => {
         placeholder="Напишите сообщение..."
         className={styles.textarea}
         rows={1}
+        disabled={isLoading}
         onInput={(e) => {
-          const target = e.target as HTMLTextAreaElement;
-          target.style.height = 'auto';
-          target.style.height = Math.min(target.scrollHeight, 120) + 'px';
+          const el = e.target as HTMLTextAreaElement;
+          el.style.height = 'auto';
+          el.style.height = Math.min(el.scrollHeight, 120) + 'px';
         }}
       />
       <div className={styles.buttons}>
-        <Button disabled={!input.trim()}>📤</Button>
-        <Button variant="secondary">⏹️</Button>
-        <Button variant="secondary">📎</Button>
+        <Button
+          variant="primary"
+          disabled={!input.trim() || isLoading}
+          onClick={handleSubmit}
+        >
+          📤
+        </Button>
+        <Button variant="secondary" disabled={isLoading}>
+          ⏹️
+        </Button>
+        <Button variant="secondary" disabled={isLoading}>
+          📎
+        </Button>
       </div>
     </div>
   );

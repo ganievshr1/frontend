@@ -1,20 +1,35 @@
 import React from 'react';
 import Message from './Message';
+import styles from './MessageList.module.css';
 
-const mockMessages = [
-  { id: 1, role: 'assistant' as const, content: 'Привет! Чем могу помочь?' },
-  { id: 2, role: 'user' as const, content: 'Объясни, как работает GigaChat.' },
-  { id: 3, role: 'assistant' as const, content: 'GigaChat — это **LLM** от Сбера.\n\n- Поддерживает диалог\n- Понимает контекст\n- Может генерировать код\n\nХочешь пример?' },
-  { id: 4, role: 'user' as const, content: 'Да, покажи код на Python.' },
-  { id: 5, role: 'assistant' as const, content: '```python\nprint("Hello, GigaChat!")\n```' },
-  { id: 6, role: 'user' as const, content: 'Спасибо!' },
-];
+interface MessageListProps {
+  messages: {
+    id: number;
+    role: 'user' | 'assistant';
+    content: string;
+    timestamp: Date;
+  }[];
+}
 
-const MessageList: React.FC = () => {
+const MessageList: React.FC<MessageListProps> = ({ messages }) => {
+  if (messages.length === 0) {
+    return (
+      <div className={styles.empty}>
+        <div>💬</div>
+        <p>Начните новый диалог</p>
+      </div>
+    );
+  }
+
   return (
-    <div className="messageList">
-      {mockMessages.map((msg) => (
-        <Message key={msg.id} role={msg.role} content={msg.content} />
+    <div className={styles.messageList}>
+      {messages.map((msg) => (
+        <Message
+          key={msg.id}
+          role={msg.role}
+          content={msg.content}
+          timestamp={msg.timestamp}
+        />
       ))}
     </div>
   );

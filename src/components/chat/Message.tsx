@@ -4,18 +4,21 @@ import remarkGfm from 'remark-gfm';
 import styles from './Message.module.css';
 
 interface MessageProps {
-  content: string;
   role: 'user' | 'assistant';
+  content: string;
+  timestamp: Date;
 }
 
-const Message: React.FC<MessageProps> = ({ content, role }) => {
+const Message: React.FC<MessageProps> = ({ role, content, timestamp }) => {
   return (
     <div className={`${styles.message} ${styles[role]}`}>
       {role === 'assistant' && <div className={styles.avatar}>🤖</div>}
       <div className={styles.content}>
         <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
+        <div className={styles.timestamp}>
+          {timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+        </div>
       </div>
-      <button className={styles.copyBtn}>📋</button>
     </div>
   );
 };

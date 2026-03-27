@@ -1,38 +1,52 @@
 .panel {
   padding: 20px;
-  background-color: var(--color-card-bg);
-  border: 1px solid var(--color-border);
-  border-radius: 12px;
-  max-width: 500px;
-  margin: 20px auto;
+  background: var(--color-card-bg);
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 400px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 20px;
   color: var(--color-text);
 }
 
-.panel h2 {
-  margin-top: 0;
+.section {
   margin-bottom: 20px;
 }
 
-.select, .numberInput, .textarea {
+.label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: var(--color-text-secondary);
+}
+
+.select,
+.inputNumber,
+.textarea {
   width: 100%;
-  padding: 8px;
-  margin: 8px 0 16px;
+  padding: 10px 12px;
   border: 1px solid var(--color-border);
-  border-radius: 6px;
-  background-color: var(--color-input-bg);
+  border-radius: 8px;
+  background: var(--color-input-bg);
   color: var(--color-text);
+  font-size: 16px;
+}
+
+.select:focus,
+.inputNumber:focus,
+.textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(0, 82, 217, 0.2);
 }
 
 .textarea {
-  height: 100px;
   resize: vertical;
-}
-
-.themeToggle {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin: 16px 0;
 }
 
 .buttons {
@@ -40,3 +54,14 @@
   gap: 12px;
   margin-top: 24px;
 }
+
+/* Mobile */
+@media (max-width: 768px) {
+  .panel {
+    padding: 16px;
+    max-width: 100%;
+  }
+
+  .title {
+    font-size: 16px;
+  }

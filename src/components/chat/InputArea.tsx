@@ -1,58 +1,76 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import styles from './InputArea.module.css';
 import Button from '../ui/Button';
 
 interface InputAreaProps {
-  onSend: () => void;
+  onSend: (content: string) => void;
   isLoading: boolean;
 }
 
 const InputArea: React.FC<InputAreaProps> = ({ onSend, isLoading }) => {
   const [input, setInput] = useState('');
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const handleSubmit = () => {
-    if (input.trim()) {
-      onSend(input);
-      setInput('');
+    const trimmed = input.trim();
+    if (!trimmed || isLoading) return;
+    onSend(trimmed);
+    setInput('');
+    if (textareaRef.current) {
+      textareaRef.current.style.height = 'auto';
     }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
+    if (e.key === 'Enter') {
+      if (e.shiftKey) {
+        // Перенос строки
+        return;
+      }
       e.preventDefault();
       handleSubmit();
+    }
+  };
+
+  const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const value = e.target.value;
+    setInput(value);
+
+    // Автоподстройка высоты (до 5 строк ≈ 120px)
+    if (textareaRef.current) {
+      textareaRef.current.style.height = 'auto';
+      textareaRef.current.style.height = Math.min(textareaRef.current.scrollHeight, 120) + 'px';
     }
   };
 
   return (
     <div className={styles.inputArea}>
       <textarea
+        ref={textareaRef}
         value={input}
-        onChange={(e) => setInput(e.target.value)}
+        onChange={handleInput}
         onKeyDown={handleKeyDown}
         placeholder="Напишите сообщение..."
         className={styles.textarea}
         rows={1}
         disabled={isLoading}
-        onInput={(e) => {
-          const el = e.target as HTMLTextAreaElement;
-          el.style.height = 'auto';
-          el.style.height = Math.min(el.scrollHeight, 120) + 'px';
-        }}
       />
       <div className={styles.buttons}>
-        <Button
-          variant="primary"
-          disabled={!input.trim() || isLoading}
-          onClick={handleSubmit}
-        >
-          📤
-        </Button>
+        {isLoading ? (
+          <Button variant="secondary" disabled>
+            ⏹️ Стоп
+          </Button>
+        ) : (
+          <Button
+            variant="primary"
+            disabled={!input.trim()}
+            onClick={handleSubmit}
+          >
+            📤 Отправить
+          </Button>
+        )}
         <Button variant="secondary" disabled={isLoading}>
-          ⏹️
-        </Button>
-        <Button variant="secondary" disabled={isLoading}>
-          📎
+          📎 Прикрепить
         </Button>
       </div>
     </div>

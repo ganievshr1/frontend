@@ -2,10 +2,10 @@ import React from 'react';
 import styles from './TypingIndicator.module.css';
 
 interface TypingIndicatorProps {
-  isVisible?: boolean;
+  isVisible: boolean;
 }
 
-const TypingIndicator: React.FC<TypingIndicatorProps> = ({ isVisible = true }) => {
+const TypingIndicator: React.FC<TypingIndicatorProps> = ({ isVisible }) => {
   if (!isVisible) return null;
 
   return (

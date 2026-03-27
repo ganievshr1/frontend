@@ -1,27 +1,53 @@
-:root {
-  --color-bg: #ffffff;
-  --color-bg-sidebar: #f8f9fa;
-  --color-header-bg: #ffffff;
+root {
+  /* Light theme */
+  --color-bg: #f7f9fc;
   --color-card-bg: #ffffff;
-  --color-text: #212529;
-  --color-text-secondary: #6c757d;
-  --color-border: #dee2e6;
-  --color-hover: #e9ecef;
-  --color-primary: #0d6efd;
-  --color-input-bg: #ffffff;
-  --color-error: #dc3545;
+  --color-header-bg: #ffffff;
+  --color-sidebar-bg: #f0f4f8;
+  --color-text: #1e293b;
+  --color-text-secondary: #64748b;
+  --color-border: #e2e8f0;
+  --color-hover: #e2e8f0;
+  --color-primary: #0052d9;
+  --color-primary-hover: #003c9d;
+  --color-input-bg: #f8fafc;
+  --color-error: #dc2626;
+  --color-success: #10b981;
+  --color-shadow: rgba(0, 0, 0, 0.05);
 }
 
-[data-theme="dark"] {
-  --color-bg: #121212;
-  --color-bg-sidebar: #1e1e1e;
-  --color-header-bg: #1e1e1e;
-  --color-card-bg: #2d2d2d;
-  --color-text: #e0e0e0;
-  --color-text-secondary: #9e9e9e;
-  --color-border: #444;
-  --color-hover: #3a3a3a;
-  --color-primary: #4dabf7;
-  --color-input-bg: #2d2d2d;
-  --color-error: #ff6b6b;
+[data-theme='dark'] {
+  --color-bg: #0f172a;
+  --color-card-bg: #1e293b;
+  --color-header-bg: #1e293b;
+  --color-sidebar-bg: #0f172a;
+  --color-text: #f1f5f9;
+  --color-text-secondary: #94a3b8;
+  --color-border: #334155;
+  --color-hover: #334155;
+  --color-primary: #3b82f6;
+  --color-primary-hover: #2563eb;
+  --color-input-bg: #0f172a;
+  --color-error: #f87171;
+  --color-success: #22c55e;
+  --color-shadow: rgba(0, 0, 0, 0.2);
+}
+
+/* Общие стили */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+html {
+  scroll-behavior: smooth;
 }

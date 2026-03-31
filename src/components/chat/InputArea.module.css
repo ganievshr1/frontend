@@ -5,6 +5,7 @@
   border-top: 1px solid var(--color-border);
   gap: 12px;
   align-items: flex-end;
+  width: 100%;
 }
 
 .textarea {
@@ -20,9 +21,15 @@
   max-height: 120px;
 }
 
+.textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(0, 82, 217, 0.2);
+}
+
 .textarea:disabled {
-  background: var(--color-input-bg);
   opacity: 0.7;
+  cursor: not-allowed;
 }
 
 .buttons {
@@ -38,9 +45,46 @@
   align-items: center;
   justify-content: center;
   font-size: 18px;
+  border: none;
+  cursor: pointer;
 }
 
-.button:disabled {
+.primary {
+  background: var(--color-primary);
+  color: white;
+}
+
+.primary:hover:not(:disabled) {
+  background: var(--color-primary-hover);
+}
+
+.primary:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+.secondary {
+  background: var(--color-card-bg);
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
+}
+
+.secondary:hover:not(:disabled) {
+  background: var(--color-hover);
+}
+
+.secondary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .inputArea {
+    padding: 12px;
+  }
+
+  .textarea {
+    font-size: 15px;
+  }
 }

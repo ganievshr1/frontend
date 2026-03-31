@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react';
 import styles from './InputArea.module.css';
-import Button from '../ui/Button';
 
 interface InputAreaProps {
   onSend: (content: string) => void;
@@ -22,11 +21,7 @@ const InputArea: React.FC<InputAreaProps> = ({ onSend, isLoading }) => {
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if (e.key === 'Enter') {
-      if (e.shiftKey) {
-        // Перенос строки
-        return;
-      }
+    if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       handleSubmit();
     }
@@ -35,8 +30,6 @@ const InputArea: React.FC<InputAreaProps> = ({ onSend, isLoading }) => {
   const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const value = e.target.value;
     setInput(value);
-
-    // Автоподстройка высоты (до 5 строк ≈ 120px)
     if (textareaRef.current) {
       textareaRef.current.style.height = 'auto';
       textareaRef.current.style.height = Math.min(textareaRef.current.scrollHeight, 120) + 'px';
@@ -57,21 +50,21 @@ const InputArea: React.FC<InputAreaProps> = ({ onSend, isLoading }) => {
       />
       <div className={styles.buttons}>
         {isLoading ? (
-          <Button variant="secondary" disabled>
+          <button className={`${styles.button} ${styles.secondary}`} disabled>
             ⏹️ Стоп
-          </Button>
+          </button>
         ) : (
-          <Button
-            variant="primary"
-            disabled={!input.trim()}
+          <button
+            className={`${styles.button} ${styles.primary}`}
             onClick={handleSubmit}
+            disabled={!input.trim()}
           >
             📤 Отправить
-          </Button>
+          </button>
         )}
-        <Button variant="secondary" disabled={isLoading}>
-          📎 Прикрепить
-        </Button>
+        <button className={`${styles.button} ${styles.secondary}`} disabled={isLoading}>
+          📎
+        </button>
       </div>
     </div>
   );
